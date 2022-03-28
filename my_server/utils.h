@@ -7,6 +7,10 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <sys/sendfile.h>
+#include <stdint.h> // для int64_t
+#include <inttypes.h> // для правильного вывода int64_t в printf
 
 int socket_with_error_handler(int domain, int type, int protocol);
 
