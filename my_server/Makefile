@@ -10,7 +10,7 @@ OBJ_UTILS = $(UTILS:.c=.o)
 OBJ_SERVER = $(FILES_S:.c=.o)
 OBJ_CLIENT = $(FILES_C:.c=.o)
 
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
