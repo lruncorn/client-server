@@ -2,6 +2,8 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <netinet/in.h>
@@ -11,6 +13,10 @@
 #include <sys/sendfile.h>
 #include <stdint.h> // для int64_t
 #include <inttypes.h> // для правильного вывода int64_t в printf
+
+//  #include <sys/types.h>
+    //  #include <sys/socket.h>
+     #include <sys/uio.h>
 
 int socket_with_error_handler(int domain, int type, int protocol);
 

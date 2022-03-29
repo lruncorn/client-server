@@ -3,7 +3,7 @@
 
 int main(){
     int server_fd = 0;
-
+    int flag = 0;
     server_fd = socket_with_error_handler(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in adr = {0}; ///// memset?
     adr.sin_family = AF_INET;
@@ -18,6 +18,7 @@ int main(){
 
     ssize_t nread;
     char buf[256];
+    while(flag == 0){
     nread = read(fd, buf, 256);
     if (nread  == -1){
         perror("read failure");
@@ -25,10 +26,16 @@ int main(){
     }
     if (nread == 0){
         printf("End of file occured\n");
+        flag = 1;
+        break;
     }
+    // printf("%d\n", 1);
     write(STDOUT_FILENO, buf, nread);
-    write(fd, buf, nread);
+    // printf("%d\n", 2);
 
+    write(fd, buf, nread);
+    }
+// write(STDOUT_FILENO, buf, nread);
     sleep(1);
     close(fd);
     close(server_fd);
