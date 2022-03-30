@@ -61,17 +61,17 @@ int main(int argc, char** argv){
     }
     closedir(d);
 
-    /*
-    // char *filename = "test"; //replace it
-    // char *tmp = strjoin(args.directory, "/"); //malloc
-    // char *path = strjoin(tmp, filename); //malloc
-    // free(tmp);
+    
+    char *filename = "test"; //replace it
+    char *tmp = strjoin(args.directory, "/"); //malloc
+    char *path = strjoin(tmp, filename); //malloc
+    free(tmp);
 
-    file_fd = open("path", O_CREAT | O_RDWR);
+    file_fd = open(path, O_CREAT | O_RDWR);
     write(file_fd, "hello\n", 6);
     close(file_fd);
 
-    
+    /*
     while(flag == 0){
     nread = read(fd, buf, 256);
     if (nread  == -1){
@@ -89,7 +89,7 @@ int main(int argc, char** argv){
     }
     */
    
-    closedir(d);
+    // closedir(d);
 
     sleep(1);
     close(fd);
