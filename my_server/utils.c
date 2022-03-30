@@ -1,5 +1,31 @@
 #include "utils.h"
 
+// char	*strjoin(char const *s1, char const *s2)
+// {
+// 	size_t	len;
+// 	char	*new;
+
+// 	new = NULL;
+// 	if (s1 && s2)
+// 	{
+// 		len = strlen(s1) + strlen(s2);
+// 		new = (char *)malloc(len + 1);
+// 		if (!(new))
+// 			return (NULL);
+// 		while (*s1 != '\0')
+// 		{
+// 			*new = *s1;
+// 			new++;
+// 			s1++;
+// 		}
+// 		while (*s2 != '\0')
+// 			*new++ = *s2++;
+// 		*new = '\0';
+// 		new -= len;
+// 	}
+// 	return (new);
+// }
+
 int socket_with_error_handler(int domain, int type, int protocol){
     int res = 0;
     res = socket(domain, type, protocol);

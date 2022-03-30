@@ -10,8 +10,8 @@ OBJ_UTILS = $(UTILS:.c=.o)
 OBJ_SERVER = $(FILES_S:.c=.o)
 OBJ_CLIENT = $(FILES_C:.c=.o)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc -g
+CFLAGS = 
 RM = rm -rf
 
 all: $(CLIENT) $(SERVER)

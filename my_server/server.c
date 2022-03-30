@@ -1,9 +1,40 @@
 #include "utils.h"
-// #include <string.h> 
+#include <string.h>
 
-int main(){
+void clean_args(t_args *args){
+    if(args->directory != NULL){
+        // free(args->directory);
+        args->directory = NULL;
+    }
+}
+
+void init_args(char **argv, t_args *args){
+    args->port = strtol(argv[1], NULL, 10);
+    if (args->port < 1 || args->port > 65535){
+        fprintf(stderr,  "Wrong port number. Approvable diapason: 1 - 65535\n");
+        exit(EXIT_FAILURE);
+    }
+    args->directory = strdup(argv[2]);
+    if (args->directory == NULL){
+        perror("Parse directory failure");
+        exit(EXIT_FAILURE);
+    }
+}
+
+void get_args(int argc, char **argv, t_args *args){
+    if (argc != 3){
+        fprintf(stderr,  "Wrong number of arguments!\nUsage: ./server [port] [directory to save file]\n");
+        exit(EXIT_FAILURE);
+    }
+    init_args(argv, args);
+    printf("%d\n%s\n", args->port, args->directory);
+}
+
+int main(int argc, char** argv){
+    t_args args;
+    
+    get_args(argc, argv, &args);
     int server_fd = 0;
-    // int flag = 0;
     server_fd = socket_with_error_handler(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in adr = {0}; ///// memset?
     adr.sin_family = AF_INET;
@@ -21,7 +52,26 @@ int main(){
     int flag = 0;
     int nread = 0;
     int file_fd = 0;
-    file_fd = open("test", O_CREAT | O_RDWR);
+
+    DIR *d;
+    d = opendir(args.directory);
+    if (d == NULL){
+        perror("directory error");
+        exit(EXIT_FAILURE);
+    }
+    closedir(d);
+
+    /*
+    // char *filename = "test"; //replace it
+    // char *tmp = strjoin(args.directory, "/"); //malloc
+    // char *path = strjoin(tmp, filename); //malloc
+    // free(tmp);
+
+    file_fd = open("path", O_CREAT | O_RDWR);
+    write(file_fd, "hello\n", 6);
+    close(file_fd);
+
+    
     while(flag == 0){
     nread = read(fd, buf, 256);
     if (nread  == -1){
@@ -37,7 +87,9 @@ int main(){
     write(file_fd, buf, nread);
   
     }
-
+    */
+   
+    closedir(d);
 
     sleep(1);
     close(fd);
