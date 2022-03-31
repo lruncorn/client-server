@@ -23,6 +23,7 @@
 typedef struct s_client_data{
     int port;
     char *address;
+    char *file_path;
     char *name_to_save_file;
 }              t_client_data;
 

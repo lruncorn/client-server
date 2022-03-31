@@ -53,6 +53,10 @@ int main(int argc, char** argv){
     int nread = 0;
     int file_fd = 0;
 
+    bzero(buf, 256);
+    nread = read(fd, buf, 256);
+
+    
     DIR *d;
     d = opendir(args.directory);
     if (d == NULL){
@@ -60,7 +64,6 @@ int main(int argc, char** argv){
         exit(EXIT_FAILURE);
     }
 
-    
     char *filename = "test"; //replace it
     char *tmp = strjoin(args.directory, "/"); //malloc
     char *path = strjoin(tmp, filename); //malloc
@@ -68,6 +71,7 @@ int main(int argc, char** argv){
 
     file_fd = open(path, O_CREAT | O_RDWR, S_IRWXU);
     // write(file_fd, "hello\n", 6);
+
 
     
     while(flag == 0){
@@ -86,7 +90,7 @@ int main(int argc, char** argv){
     close(file_fd);
     
     closedir(d);
-
+    free(path);
     sleep(1);
     close(fd);
     close(server_fd);
