@@ -20,6 +20,13 @@
      #include <string.h>
      #include <dirent.h>
 
+typedef struct s_client_data{
+    int port;
+    char *address;
+    char *name_to_save_file;
+}              t_client_data;
+
+
 
 typedef struct s_args{
     int port;
