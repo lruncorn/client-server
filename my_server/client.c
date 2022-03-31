@@ -30,7 +30,7 @@ int main(int argc, char **argv){
     connect_erh(client_fd, (struct sockaddr *)&adr, sizeof(adr));
     // connect_erh(client_fd, (struct sockaddr *)NULL, 0);
 
-    write(client_fd, "Hello\n", 6); //if...
+    // write(client_fd, "Hello\n", 6); //if...
 
     int file_fd = open(argv[1], O_RDONLY);
     if (file_fd == -1){
@@ -42,8 +42,6 @@ int main(int argc, char **argv){
     fstat(file_fd, &_fileStatbuff);
     int64_t _file_size = 0;
     _file_size = _fileStatbuff.st_size;
-    
-    
     
 
    /* if (sendfile(client_fd, file_fd, (off_t *)0, _file_size) == -1){

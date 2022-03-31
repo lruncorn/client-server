@@ -59,7 +59,6 @@ int main(int argc, char** argv){
         perror("directory error");
         exit(EXIT_FAILURE);
     }
-    closedir(d);
 
     
     char *filename = "test"; //replace it
@@ -67,11 +66,10 @@ int main(int argc, char** argv){
     char *path = strjoin(tmp, filename); //malloc
     free(tmp);
 
-    file_fd = open(path, O_CREAT | O_RDWR);
-    write(file_fd, "hello\n", 6);
-    close(file_fd);
+    /*file_fd = open(path, O_CREAT | O_RDWR, S_IRWXU);
+    // write(file_fd, "hello\n", 6);
 
-    /*
+    
     while(flag == 0){
     nread = read(fd, buf, 256);
     if (nread  == -1){
@@ -83,13 +81,11 @@ int main(int argc, char** argv){
         flag = 1;
         break;
     }
-
     write(file_fd, buf, nread);
-  
     }
-    */
-   
-    // closedir(d);
+    close(file_fd);*/
+    
+    closedir(d);
 
     sleep(1);
     close(fd);
