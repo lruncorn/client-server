@@ -26,6 +26,7 @@ int main(int argc, char **argv){
     struct sockaddr_in adr = {0}; // мемсет нормальный сделай
     adr.sin_family = AF_INET;
     adr.sin_port = htons(34543);
+    
     inet_pton_wrap(AF_INET, "127.0.0.1", &adr.sin_addr);
     connect_erh(client_fd, (struct sockaddr *)&adr, sizeof(adr));
     // connect_erh(client_fd, (struct sockaddr *)NULL, 0);
