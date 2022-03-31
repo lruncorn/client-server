@@ -66,7 +66,7 @@ int main(int argc, char** argv){
     char *path = strjoin(tmp, filename); //malloc
     free(tmp);
 
-    /*file_fd = open(path, O_CREAT | O_RDWR, S_IRWXU);
+    file_fd = open(path, O_CREAT | O_RDWR, S_IRWXU);
     // write(file_fd, "hello\n", 6);
 
     
@@ -83,7 +83,7 @@ int main(int argc, char** argv){
     }
     write(file_fd, buf, nread);
     }
-    close(file_fd);*/
+    close(file_fd);
     
     closedir(d);
 

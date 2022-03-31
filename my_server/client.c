@@ -22,6 +22,8 @@ void inet_pton_wrap(int af, const char *src, void *dst){
 
 int main(int argc, char **argv){
     (void) argc;
+    
+    void get_args(int argc, char **argv);
     int client_fd = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in adr = {0}; // мемсет нормальный сделай
     adr.sin_family = AF_INET;
@@ -29,7 +31,6 @@ int main(int argc, char **argv){
     
     inet_pton_wrap(AF_INET, "127.0.0.1", &adr.sin_addr);
     connect_erh(client_fd, (struct sockaddr *)&adr, sizeof(adr));
-    // connect_erh(client_fd, (struct sockaddr *)NULL, 0);
 
     // write(client_fd, "Hello\n", 6); //if...
 
@@ -45,10 +46,10 @@ int main(int argc, char **argv){
     _file_size = _fileStatbuff.st_size;
     
 
-   /* if (sendfile(client_fd, file_fd, (off_t *)0, _file_size) == -1){
-        perror("sendfile error");
-        exit(EXIT_FAILURE);
-    };*/
+//    if (sendfile(client_fd, file_fd, (off_t *)0, _file_size) == -1){
+//         perror("sendfile error");
+//         exit(EXIT_FAILURE);
+//     };
 
 close(file_fd);
     close(client_fd);
