@@ -67,16 +67,26 @@ void clean_data(t_client_data * data){
 int main(int argc, char **argv){
     
     t_client_data data;
-    get_client_data(argc, **argv, &data);
+    get_client_data(argc, argv, &data);
     int client_fd = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in adr = {0}; // мемсет нормальный сделай
     adr.sin_family = AF_INET;
     adr.sin_port = htons(data.port);
+
     
     inet_pton_wrap(AF_INET, data.address, &adr.sin_addr);
     connect_wrap(client_fd, (struct sockaddr *)&adr, sizeof(adr));
 
-    write(client_fd, data.name_to_save_file, strlen(data.name_to_save_file)); //if...
+    char * filename_len = itoa(strlen(data.name_to_save_file)); //malloc
+
+    write(client_fd, filename_len, strlen(filename_len));
+    write(client_fd, " ", 1); //if...
+    write(client_fd, data.name_to_save_file, strlen(data.name_to_save_file));
+
+    if (filename_len != NULL)
+        free(filename_len);
+    filename_len = NULL;
+
 
     int file_fd = open(data.file_path, O_RDONLY);
     if (file_fd == -1){

@@ -10,7 +10,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <fcntl.h>
-// #include <sys/sendfile.h>
+#include <sys/sendfile.h>
 #include <stdint.h> // для int64_t
 #include <inttypes.h> // для правильного вывода int64_t в printf
 
@@ -43,3 +43,5 @@ int Accept(int sockfd, struct sockaddr *adr, socklen_t *addrlen);
 void listen_with_error_handler(int sockfd, int backlog);
 
 char	*strjoin(char const *s1, char const *s2);
+
+char	*itoa(int n);
