@@ -69,10 +69,10 @@ int main(int argc, char** argv){
     char *path = strjoin(tmp, filename); //malloc
     free(tmp);
 
-    file_fd = open(path, O_CREAT | O_RDWR, S_IRWXU);
+    file_fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
     // write(file_fd, "hello\n", 6);
 
-
+    
     
     while(flag == 0){
     nread = read(fd, buf, 256);
