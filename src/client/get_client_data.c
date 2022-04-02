@@ -17,9 +17,9 @@ int is_valid(char *str){
 void get_client_data(int argc, char **argv, t_client_data *data){
     init_client_data(data);
     if (argc < 4 || argc > 5){
-        fprintf(stderr, "Error: wrong argument number\nUsage: ./client [server address] [server port] \
-                        [file path] [name to save file on server]\n \
-                        Last argument is optional\n");
+        fprintf(stderr, "Error: wrong argument number\nUsage: ./client [server address] [server port]"
+                        " [file path] [name to save file on server]\n"
+                        "Last argument is optional\n");
         exit(EXIT_FAILURE);
     }
     if (argc == 5){
