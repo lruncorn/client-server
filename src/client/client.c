@@ -15,7 +15,6 @@ int main(int argc, char **argv){
     adr.sin_port = htons(data.port);
     inet_pton_wrap(AF_INET, data.address, &adr.sin_addr);
     connect_wrap(client_fd, (struct sockaddr *)&adr, sizeof(adr));
-    printf("client fd %d\n", client_fd);
     send_filename(client_fd, &data);
     file_fd = open_wrap(data.file_path);
     sendfile_wrap(client_fd, file_fd);

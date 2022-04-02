@@ -1,7 +1,6 @@
 #include "../includes/client_server.h"
 
 void send_filename(int client_fd, t_client_data *data){
-	printf(" cl fd %d\n", client_fd);
     data->filename_len = itoa(strlen(data->name_to_save_file));
     write(client_fd, data->filename_len, strlen(data->filename_len));
     write(client_fd, " ", 1);

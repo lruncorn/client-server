@@ -1,5 +1,19 @@
 #include "../../includes/client_server.h"
 
+int is_valid(char *str){
+    int i = 0;
+    if(strlen(str) == 0)
+        return -1;
+    while(str[i] != '\0'){
+        if (str[i] == 46 || str[i]== 45 || (str[i] > 64 && str[i] < 91)\
+             || (str[i] > 96 && str[i] < 122) || str[i] == 95)
+            i++;
+        else
+            return (-1);
+    }
+    return 1;
+}
+
 void get_client_data(int argc, char **argv, t_client_data *data){
     init_client_data(data);
     if (argc < 4 || argc > 5){
@@ -9,10 +23,14 @@ void get_client_data(int argc, char **argv, t_client_data *data){
         exit(EXIT_FAILURE);
     }
     if (argc == 5){
+        if (is_valid(argv[4]) == -1){
+            fprintf(stderr, "Error: not valid name to save file\n");
+            exit(EXIT_FAILURE);
+        }
         data->name_to_save_file = strdup(argv[4]);
     }
     else
-        data->name_to_save_file = "newfile";
+        data->name_to_save_file = strdup("newfile");
     if (data->name_to_save_file == NULL){
         perror("Filename parse error");
         exit(EXIT_FAILURE);
@@ -27,11 +45,16 @@ void get_client_data(int argc, char **argv, t_client_data *data){
         fprintf(stderr,  "Wrong port number. Approvable diapason: 1 - 65535\n");
         exit(EXIT_FAILURE);
     }
+    if (access(argv[3], 0) == -1){
+        fprintf(stderr,  "File to send doesn't exist\n");
+        exit(EXIT_FAILURE);
+    }
     data->file_path = strdup(argv[3]);
     if(data->file_path == NULL){
         perror("File to send parse error");
         exit(EXIT_FAILURE);
     }
+
 }
 
 void clean_client_data(t_client_data * data){
