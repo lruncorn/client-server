@@ -20,4 +20,4 @@ In different terminal windows:\
 `./client [address] [port number] [path to the file to send] [name to save file in server]`\
 *_Last argument is optional._
 
-For successful connection between client and server **the port numbers should be the same**, otherwise connection will be refused.
+For successful connection between client and server **the port numbers must be the same**, otherwise connection will be refused.
