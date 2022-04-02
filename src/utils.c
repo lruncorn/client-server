@@ -2,9 +2,19 @@
 
 void send_filename(int client_fd, t_client_data *data){
     data->filename_len = itoa(strlen(data->name_to_save_file));
-    write(client_fd, data->filename_len, strlen(data->filename_len));
-    write(client_fd, " ", 1);
-    write(client_fd, data->name_to_save_file, strlen(data->name_to_save_file));
+    if (write(client_fd, data->filename_len, strlen(data->filename_len)) == -1){
+		perror("write error");
+		exit(EXIT_FAILURE);
+	}
+
+    if (write(client_fd, " ", 1) == -1){
+		perror("write error");
+		exit(EXIT_FAILURE);
+	}
+    if (write(client_fd, data->name_to_save_file, strlen(data->name_to_save_file))== -1){
+		perror("write error");
+		exit(EXIT_FAILURE);
+	}
 }
 
 char	*strjoin(char const *s1, char const *s2)

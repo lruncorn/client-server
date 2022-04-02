@@ -50,12 +50,15 @@ void copy_file(int fd, int file_fd){
         exit(EXIT_FAILURE);
     }
     if (nread == 0){
-        printf("End of file occured\n");
+        printf("File was read\n");
         flag = 1;
         break;
     }
-    write(file_fd, buf, nread);
+    if (write(file_fd, buf, nread) == -1){
+        perror("Write error");
     }
+    }
+    printf("File was successfully written\n");
 }
 
 int main(int argc, char** argv){

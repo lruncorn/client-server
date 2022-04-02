@@ -26,5 +26,4 @@ void get_args(int argc, char **argv, t_args *args){
         exit(EXIT_FAILURE);
     }
     init_args(argv, args);
-    printf("%d\n%s\n", args->port, args->directory);
 }
