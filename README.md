@@ -13,12 +13,10 @@ First you need to compile the project executing `make`.
 -----------
 
 In different terminal windows:
-First start server using (without brackets):
-
+First start server using (without brackets):\
 `./server [port number] [directory to save file]`
 
-Then start client using (without brackets):
-
+Then start client using (without brackets):\
 `./client [address] [port number] [path to the file to send] [name to save file in server]`\
 *_Last argument is optional._
 
