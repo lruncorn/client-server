@@ -1,7 +1,7 @@
-#include "utils.h"
+#include "../../includes/client_server.h"
 
 void get_client_data(int argc, char **argv, t_client_data *data){
-    init_data(&data);
+    init_client_data(data);
     if (argc < 4 || argc > 5){
         fprintf(stderr, "Error: wrong argument number\nUsage: ./client [server address] [server port] \
                         [file path] [name to save file on server]\n \
@@ -53,7 +53,7 @@ void clean_client_data(t_client_data * data){
     }
 }
 
-void init_data(t_client_data *data){
+void init_client_data(t_client_data *data){
     data->port = -1;
     data->address = NULL;
     data->file_path = NULL;

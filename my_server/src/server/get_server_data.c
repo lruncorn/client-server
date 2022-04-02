@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../../includes/client_server.h"
 
 void clean_args(t_args *args){
     if(args->directory != NULL){

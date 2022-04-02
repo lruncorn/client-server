@@ -1,17 +1,17 @@
-PATH_SRC = .
+PATH_SRC = src
 CLIENT = client
 SERVER = server
 
-UTILS = ./utils.c
-FILES_S = ./server.c
-FILES_C = ./client.c
+UTILS = ./src/utils.c ./src/wrappers.c
+FILES_S = ./src/server/server.c ../src/server/get_server_data.c 
+FILES_C = ./src/client/client.c ./src/client/get_client_data.c 
 
 OBJ_UTILS = $(UTILS:.c=.o)
 OBJ_SERVER = $(FILES_S:.c=.o)
 OBJ_CLIENT = $(FILES_C:.c=.o)
 
-CC = gcc -g
-CFLAGS = 
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -g
 RM = rm -rf
 
 all: $(CLIENT) $(SERVER)

@@ -1,4 +1,11 @@
-#include "utils.h"
+#include "../includes/client_server.h"
+
+void send_filename(int client_fd, t_client_data *data){
+    data->filename_len = itoa(strlen(data->name_to_save_file));
+    write(client_fd, data->filename_len, strlen(data->filename_len));
+    write(client_fd, " ", 1);
+    write(client_fd, data->name_to_save_file, strlen(data->name_to_save_file));
+}
 
 char	*strjoin(char const *s1, char const *s2)
 {
@@ -24,42 +31,6 @@ char	*strjoin(char const *s1, char const *s2)
 		new -= len;
 	}
 	return (new);
-}
-
-int socket_wrap(int domain, int type, int protocol){
-    int res = 0;
-    res = socket(domain, type, protocol);
-    if (res == -1){
-        perror("Error: ");
-        exit(EXIT_FAILURE);
-    }
-    return res;
-}
-
-void bind_wrap(int sockfd, const struct sockaddr *addr, socklen_t addrlen){
-    int res = 0;
-    res = bind(sockfd, addr, addrlen);
-    if (res == -1){
-        perror("bind failed");
-        exit(EXIT_FAILURE);
-    }
-}
-
-int accept_wrap(int sockfd, struct sockaddr *adr, socklen_t *addrlen){
-    int res = accept(sockfd, adr, addrlen);
-    if(res == -1){
-        perror("accept failed");
-        exit(EXIT_FAILURE);
-    }
-    return res;
-}
-
-void listen_wrap(int sockfd, int backlog){
-    int res = listen(sockfd, backlog);
-    if (res == -1){
-        perror("listen failed");
-        exit(EXIT_FAILURE);
-    }
 }
 
 static	char	*ft_itoadigit(int n)
@@ -144,13 +115,4 @@ char	*itoa(int n)
 			str[0] = '-';
 	}
 	return (str);
-}
-
-int open_wrap(char *name){
-    int file_fd = open(name, O_RDONLY);
-    if (file_fd == -1){
-        perror("open failed");
-        exit(EXIT_FAILURE);
-    }
-    return(file_fd);
 }

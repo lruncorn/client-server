@@ -50,3 +50,15 @@ char	*itoa(int n);
 void get_client_data(int argc, char **argv, t_client_data *data);
 
 void clean_client_data(t_client_data * data);
+
+void connect_wrap(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
+void inet_pton_wrap(int af, const char *src, void *dst);
+
+int open_wrap(char *name);
+
+void sendfile_wrap(int client_fd, int file_fd);
+
+void send_filename(int client_fd, t_client_data *data);
+
+void init_client_data(t_client_data *data);
