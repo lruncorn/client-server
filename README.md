@@ -12,7 +12,7 @@ First you need to compile the project executing `make`.
 **Usage:**
 -----------
 
-In different terminal windows:\
+In different terminal windows:
 - First start server using (without brackets):\
 `./server [port number] [directory to save file]`
 
