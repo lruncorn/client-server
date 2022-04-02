@@ -2,7 +2,7 @@
 
 void clean_args(t_args *args){
     if(args->directory != NULL){
-        // free(args->directory);
+        free(args->directory);
         args->directory = NULL;
     }
 }

@@ -10,15 +10,12 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <fcntl.h>
-// #include <sys/sendfile.h>
-#include <stdint.h> // для int64_t
-#include <inttypes.h> // для правильного вывода int64_t в printf
-
-//  #include <sys/types.h>
-    //  #include <sys/socket.h>
-     #include <sys/uio.h>
-     #include <string.h>
-     #include <dirent.h>
+#include <sys/sendfile.h>
+#include <stdint.h> 
+#include <inttypes.h>
+#include <sys/uio.h>
+#include <string.h>
+#include <dirent.h>
 
 typedef struct s_client_data{
     int port;
@@ -64,3 +61,9 @@ void send_filename(int client_fd, t_client_data *data);
 void init_client_data(t_client_data *data);
 
 int64_t get_filesize(int file_fd);
+
+void get_args(int argc, char **argv, t_args *args);
+
+char	*strnew(size_t len);
+
+void clean_args(t_args *args);

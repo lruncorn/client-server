@@ -1,6 +1,7 @@
 #include "../includes/client_server.h"
 
 void send_filename(int client_fd, t_client_data *data){
+	printf(" cl fd %d\n", client_fd);
     data->filename_len = itoa(strlen(data->name_to_save_file));
     write(client_fd, data->filename_len, strlen(data->filename_len));
     write(client_fd, " ", 1);
@@ -115,4 +116,28 @@ char	*itoa(int n)
 			str[0] = '-';
 	}
 	return (str);
+}
+
+int64_t get_filesize(int file_fd){
+    struct stat _fileStatbuff;
+    fstat(file_fd, &_fileStatbuff);
+    // int64_t _file_size = 0;
+    return(_fileStatbuff.st_size); 
+}
+
+char	*strnew(size_t len)
+{
+	size_t	n;
+	char	*newstr;
+
+	n = 0;
+	newstr = malloc(len + 1);
+	if (!(newstr))
+		return (NULL);
+	while (n <= len)
+	{
+		newstr[n] = '\0';
+		n++;
+	}
+	return (newstr);
 }

@@ -7,37 +7,35 @@ void check_directory(t_args *args){
         perror("directory error");
         exit(EXIT_FAILURE);
     }
-    close(d);
+    closedir(d);
 }
 
 char *get_filename(int fd, t_args *args){
     char minibuf[2];
-    char buf[256];
+    char buf[256] = {0};
     bzero(minibuf, 2);
-    char *name_to_save = "";
-    char *len_of_name = "";
+    char *len_of_name = strnew(0);
     char *tmp = NULL;
-    int64_t nread = 0;
     while (minibuf[0] != ' ')
     {
-        nread = read(fd, minibuf, 1);
+        read(fd, minibuf, 1);
         minibuf[1]='\0';
         tmp = len_of_name;
-        len_of_name = strjoin(tmp, minibuf);
+        len_of_name = strjoin(len_of_name, minibuf);
         if (tmp != NULL)
             free(tmp);
     }
     tmp = NULL;
     bzero(minibuf, 2);
-    nread = read(fd, buf, atoi(len_of_name));
-    char *filename = strdup(buf); //malloc
-    // printf("%s\n", len_of_name);// убери принтф
-    // printf("%s\n", buf); // убери принтф
-    // bzero(buf, 256);
-    tmp = strjoin(args->directory, "/"); //malloc
-    char *path = strjoin(tmp, filename); //malloc
+    read(fd, buf, atoi(len_of_name));
+    char *filename = strdup(buf);
+    bzero(buf, 256);
+    tmp = strjoin(args->directory, "/");
+    char *path = strjoin(tmp, filename);
+    free(len_of_name);
     free(tmp);
     free(filename);
+    return path;
 }
 
 void copy_file(int fd, int file_fd){
@@ -85,5 +83,7 @@ int main(int argc, char** argv){
     sleep(1);
     close(fd);
     close(server_fd);
+    clean_args(&args);
+    free(path);
     return 0;
 }

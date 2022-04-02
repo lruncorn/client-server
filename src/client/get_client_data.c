@@ -8,15 +8,15 @@ void get_client_data(int argc, char **argv, t_client_data *data){
                         Last argument is optional\n");
         exit(EXIT_FAILURE);
     }
-    if (argc == 4){
-        data->name_to_save_file = "newfile";
+    if (argc == 5){
+        data->name_to_save_file = strdup(argv[4]);
     }
     else
-        data->name_to_save_file = strdup(argv[4]);
-        if (data->name_to_save_file == NULL){
-            perror("Filename parse error");
-            exit(EXIT_FAILURE);
-        }
+        data->name_to_save_file = "newfile";
+    if (data->name_to_save_file == NULL){
+        perror("Filename parse error");
+        exit(EXIT_FAILURE);
+    }
     data->address = strdup(argv[1]);
     if (data->address == NULL){
         perror("Address parse error");
@@ -59,11 +59,4 @@ void init_client_data(t_client_data *data){
     data->file_path = NULL;
     data->name_to_save_file = NULL;
     data->filename_len = NULL;
-}
-
-int64_t get_filesize(int file_fd){
-    struct stat _fileStatbuff;
-    fstat(file_fd, &_fileStatbuff);
-    // int64_t _file_size = 0;
-    return(_fileStatbuff.st_size); 
 }
