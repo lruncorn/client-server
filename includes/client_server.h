@@ -62,3 +62,5 @@ void sendfile_wrap(int client_fd, int file_fd);
 void send_filename(int client_fd, t_client_data *data);
 
 void init_client_data(t_client_data *data);
+
+int64_t get_filesize(int file_fd);
