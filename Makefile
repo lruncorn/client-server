@@ -11,7 +11,7 @@ OBJ_SERVER = $(FILES_S:.c=.o)
 OBJ_CLIENT = $(FILES_C:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 RM = rm -rf
 
 all: $(CLIENT) $(SERVER)

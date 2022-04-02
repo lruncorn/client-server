@@ -61,6 +61,7 @@ void copy_file(int fd, int file_fd){
 int main(int argc, char** argv){
     t_args args;
     get_args(argc, argv, &args);
+    check_directory(&args);
     int fd = 0;
     int file_fd = 0;
     int server_fd = 0;
@@ -76,7 +77,7 @@ int main(int argc, char** argv){
     fd = accept_wrap(server_fd, (struct sockaddr*)&adr, &addrlen);
 
     char *path = get_filename(fd, &args);
-    check_directory(&args);
+    
     file_fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
     copy_file(fd, file_fd);
     close(file_fd);
