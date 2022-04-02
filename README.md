@@ -17,7 +17,7 @@ In different terminal windows:
 `./server [port number] [directory to save file]`
 
  - Then start client using (without brackets):\
-`./client [address] [port number] [path to the file to send] [name to save file in server]`\
+`./client [address] [port number] [path to the file to send] [name to save file on server]`\
 *_Last argument is optional._
 
 For successful connection between client and server **the port numbers must be the same**, otherwise connection will be refused.
