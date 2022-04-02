@@ -17,6 +17,7 @@ First start server using (without brackets):
 Then start client using (without brackets):
 
 ./client [address] [port number] [path to the file to send] [name to save file in server]
+
 Last argument is optional.
 
 For successful connection between client and server port numbers must be same, otherwise connection will be refused.
